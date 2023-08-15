@@ -11,13 +11,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
-          {/* <Route path='/' Component={Feed} />
+          <Route path='/' Component={Feed} />
           <Route path='/myFeed' Component={MyFeed} />
           <Route path='/myPosts' Component={MyPosts} />
-          <Route path='/createPost' Component={CreatePost} /> */}
-          <Route path='/login' Component={Login} />
+          <Route path='/createPost' Component={CreatePost} />
+          {/* <Route path='/login' Component={Login} /> */}
         </Routes>
       </BrowserRouter>
     </>

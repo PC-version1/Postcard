@@ -7,6 +7,9 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
+  // const [addRequestStatus, setAddReuqestStatus] = useState('idle')
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -23,14 +26,29 @@ const CreatePost = () => {
     const newBlogPost = {
       title,
       content,
-    };
-    useDispatch(addNewPost(newBlogPost))
+      tags
+  }
+    dispatch(addNewPost(newBlogPost))
     console.log('New Blog Post:', newBlogPost);
 
     // Reset the input fields
     setTitle('');
     setContent('');
   };
+  const handleTagInputChange = (event) => {
+    setTagInput(event.target.value);
+  };
+
+  const handleAddTag = () => {
+    if (tagInput.trim() !== '') {
+      setTags([...tags, tagInput]);
+      setTagInput('');
+    }
+  };
+
+  const handleClearTag = () => {
+    setTags([]);
+  }
 
   return (
     <div className="bg-slate-300 shadow-lg rounded-lg p-6 max-w-4xl mx-auto m-10">
@@ -61,6 +79,37 @@ const CreatePost = () => {
         >
           Create Post
         </button>
+        <div className="mt-4">
+        <input
+          type="text"
+          placeholder="Add a tag..."
+          value={tagInput}
+          onChange={handleTagInputChange}
+          className="border border-gray-300 rounded p-2 w-full"
+        />
+          <button
+          onClick={handleAddTag}
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+        >
+          Add Tag
+        </button>
+        <button
+          onClick={handleClearTag}
+          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+        >
+          Clear Tags
+        </button>
+      </div>
+      <div className="mt-4">
+        <h3 className="text-lg font-semibold mb-2">Tags:</h3>
+        <ul>
+          {tags.map((tag, index) => (
+            <li key={index} className="mb-2">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
       </form>
     </div>
   );
