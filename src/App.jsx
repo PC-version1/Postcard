@@ -1,9 +1,10 @@
-import './App.css';
-
+import Counter from './features/counter/Counter';
+import Navbar from './features/navbar/Navbar';
 function App() {
   return (
     <>
-      <div>hello</div>
+      <Navbar />
+      <Counter />
     </>
   );
 }
