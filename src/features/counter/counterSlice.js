@@ -1,3 +1,4 @@
+//dummy slice for redux toolkit demonstration only
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {

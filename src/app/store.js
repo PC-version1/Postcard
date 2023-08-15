@@ -1,3 +1,5 @@
+//dummy store just to demonstrate redux toolkit
+
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 export const store = configureStore({
