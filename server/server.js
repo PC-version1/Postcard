@@ -1,4 +1,3 @@
-// const express = require('express');
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
@@ -6,6 +5,8 @@ import cookieParser from 'cookie-parser';
 const PORT = 3000;
 const app = express();
 
+// IMPORT Middlewares
+import userController from './controllers/userController.js';
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -14,15 +15,22 @@ app.use(cookieParser());
 // statically serve everything in the build folder 
 app.use(express.static('../build'));
 
-// catch all route handler
-// app.use((req, res) => {
-//   res.status(404).send('Page not found');
-// });
+// import blog route
+import blogRouter from './routes/blogs.js'
+app.use('/blogs', blogRouter)
 
-// test for backend if it is running
-app.get('/hello', (req, res) => {
-  return res.status(200).json('hello');
+// can possible switch over to routes to make it more straightforward
+// user login/sign up routes
+app.post('/signup', userController.createUser, (req, res) => {
+  console.log('--entering back out to route')
+  return res.status(200).json(res.locals.newUser);
 });
+
+app.post('/login', userController.userLogin, (req, res) => {
+  // upon successful sign up
+  return res.status(200).json(res.locals.data);
+});
+
 
 // Global error handler
 app.use((err, req, res, next) => {
