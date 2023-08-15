@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className='bg-black p-4'>
       <div className='container mx-auto flex justify-between items-center'>
-        <Link to='/' className='text-white font-semibold text-4xl'>
+        <Link to='/' className='text-white font-semibold text-5xl'>
           Post Card
         </Link>
         <ul className='flex space-x-4'>
