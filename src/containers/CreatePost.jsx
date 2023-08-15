@@ -39,7 +39,8 @@ const CreatePost = () => {
     setTagInput(event.target.value);
   };
 
-  const handleAddTag = () => {
+  const handleAddTag = (event) => {
+    event.preventDefault();
     if (tagInput.trim() !== '') {
       setTags([...tags, tagInput]);
       setTagInput('');
@@ -75,7 +76,7 @@ const CreatePost = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="bg-blue-500 text-white px-4 py-2 mx-1 rounded hover:bg-blue-600 focus:outline-none"
         >
           Create Post
         </button>
@@ -89,13 +90,13 @@ const CreatePost = () => {
         />
           <button
           onClick={handleAddTag}
-          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="mt-2 mx-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
         >
           Add Tag
         </button>
         <button
           onClick={handleClearTag}
-          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="mt-2 mx-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
         >
           Clear Tags
         </button>
