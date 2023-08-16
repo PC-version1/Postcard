@@ -5,15 +5,15 @@ import axios from 'axios';
 import Post from '../components/Post';
 import Navbar from '../components/Navbar';
 
-const MyFeed = () => {
+const Feed = () => {
   const dispatch = useDispatch();
-  const allPosts = useSelector(state => state.postReducer.allPosts);
+  const allPosts = useSelector((state) => state.postReducer.allPosts);
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        const response = await axios.get('http://localhost:3000/blogs');
         dispatch(setAllPosts(response.data));
       } catch (err) {
         console.log(err);
@@ -29,35 +29,37 @@ const MyFeed = () => {
 
   return (
     <>
-    <Navbar />
-    <div className="flex">
-      <div className="bg-slate-100 w-1/3 p-4 overflow-y-auto border-r border-gray-300 max-h-screen">
-        {allPosts.map((post) => (
-          <div
-            key={post.id}
-            className={`cursor-pointer p-2 mb-4 ${
-              selectedPost?.id === post.id ? 'bg-gray-200' : ''
-            }`}
-            onClick={() => handlePostClick(post)}
-          >
-            <h3 className="text-lg font-semibold">{post.title}</h3>
-            <p className="text-gray-600 truncate">{post.body}</p>
-          </div>
-        ))}
+      <Navbar />
+      <div className='flex'>
+        <div className='bg-slate-100 w-1/3 p-4 overflow-y-auto border-r border-gray-300 max-h-screen'>
+          {allPosts.map((post) => (
+            <div
+              key={post.id}
+              className={`cursor-pointer p-2 mb-4 ${
+                selectedPost?.id === post.id ? 'bg-gray-200' : ''
+              }`}
+              onClick={() => handlePostClick(post)}
+            >
+              <h3 className='text-lg font-semibold'>{post.title}</h3>
+              <p className='text-gray-600 truncate'>-{post.author}</p>
+              <p className='text-gray-600 truncate'>{post.body}</p>
+            </div>
+          ))}
+        </div>
+        <div className='w-2/3 p-4 bg-gray-100 fixed right-0'>
+          {selectedPost && (
+            <Post
+              className=''
+              title={selectedPost.title}
+              author='Author Name'
+              date='July 15, 2023'
+              content={selectedPost.body}
+            />
+          )}
+        </div>
       </div>
-      <div className="w-2/3 p-4 bg-gray-100 fixed right-0">
-        {selectedPost && (
-          <Post className=''
-            title={selectedPost.title}
-            author="Author Name"
-            date="July 15, 2023"
-            content={selectedPost.body}
-          />
-        )}
-      </div>
-    </div>
     </>
   );
 };
 
-export default MyFeed;
+export default Feed;
