@@ -4,15 +4,31 @@ import { onLogin } from '../reducers/userReducer';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+const [username, setUsername] = useState('');
 
-  const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.userReducer.isAuthenticated);
 
+  //declare dispatch variable which will create action to be sent to reducer(toolkit automatically creates action when sees dispatch fxn)
+  //reducers-pure functions, take current state and dispatched actions as inputs
+  //returns new state. new state is updated in redux store causes components connected to it to
+  //re render with updated data.
+  const dispatch = useDispatch();
+
+  //add handle signUp here executed when sign up button clicked/invoked in component
   const handleSignup = () => {
-    // Dispatch the login action
-    // dispatch(onLogin({ username, password }));
+    //destructuring vars into userData obj
+    const userData = { name, username, email, password };
+    //dispatch signUpSuccess action from Redux Store
+    ///userData is payload of action - this is whats used to update state of redux store
+    dispatch(signUpSuccess(userData));
+    //after dispatching actions reset state variables for next sign in attempt
+    setName('');
+    setUsername('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -27,7 +43,14 @@ const Signup = () => {
 
       <div className='flex justify-center items-center h-screen'>
         <div className='w-1/4 h-1/2 p-8 bg-slate-100 rounded-lg shadow-md'>
-          <h2 className='text-2xl font-semibold mb-4'>Sign Up</h2>
+          <h2 className='text-2xl font-semibold mb-4'>Sign Up to Post A Card!</h2>
+          <input
+            type='text'
+            placeholder='Name'
+            className='w-full p-2 mb-2 border rounded'
+            value={name}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <input
             type='text'
             placeholder='Username'
@@ -41,6 +64,13 @@ const Signup = () => {
             className='w-full p-2 mb-4 border rounded'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type='text'
+            placeholder='Email'
+            className='w-full p-2 mb-4 border rounded'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <button
             onClick={handleSignup}
