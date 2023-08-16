@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
 
+// render signup component
+function renderSignUpPage() {
+  render();
+}
+
 const Navbar = () => {
   return (
     <nav className='bg-black p-4'>
