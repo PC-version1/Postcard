@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { onLogin } from '../../reducers/authslice.js';
+// import { onLogin } from '../../reducers/authslice.js';
 import React, { useState } from 'react';
 import axios from 'axios'; //import axios library
 
@@ -20,7 +20,7 @@ const Login = () => {
       //else
       //login failed
       //display error message to user invalid credentials
-      const response = await axios.post('/login', {
+      const response = await axios.post('/api/login', {
         username,
         password,
       });

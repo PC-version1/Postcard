@@ -17,7 +17,7 @@ function App() {
           <Route path='/myFeed' Component={MyFeed} />
           <Route path='/myPosts' Component={MyPosts} />
           <Route path='/createPost' Component={CreatePost} /> */}
-          {/* <Route path='/login' Component={Login} /> */}
+          <Route path='/login' Component={Login} />
           <Route path='/signup' Component={SignUpPage} />
         </Routes>
       </BrowserRouter>

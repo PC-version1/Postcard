@@ -1,7 +1,7 @@
 //imports
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import logoImage from '/Users/noelpallivathucal/Desktop/Codesmith/Postcard/build/assets/postcardlogo.jpg';
+import logoImage from '/Users/noelpallivathucal/Desktop/Codesmith/Postcard/build/assets/postcardlogo-167d0ee0.jpg';
 //declare signup component and add states
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -21,9 +21,8 @@ const SignUpPage = () => {
     const userData = { name, username, email, password };
     //dispatch signUpSuccess action from Redux Store
     ///userData is payload of action - this is whats used to update state of redux store
-    //after dispatching actions reset state variables for next sign in attempt
     dispatch(signUpSuccess(userData));
-    //reset state variables for input fields
+    //after dispatching actions reset state variables for next sign in attempt
     setName('');
     setUsername('');
     setEmail('');

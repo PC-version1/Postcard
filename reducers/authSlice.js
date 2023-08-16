@@ -22,7 +22,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
     },
-    //add signUpSuccess action this reducer
+    //add signUpSuccess action to this reducer
     //updates user prop in redux store's state with payload provided in action
     //with this user data from sign up process should be stored in redux store
     signUpSuccess: (state, action) => {
