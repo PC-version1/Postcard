@@ -8,8 +8,11 @@ router.get('/', (req, res) => {
     return res.status(201).json('hello');
 })
 
-router.post('/', blogController.createBlog, (req, res) => {
-    return res.status(201);
+router.post('/', blogController.createBlog, blogController.setTags, (req, res) => {
+    console.log('successful blog creation')
+    return res.status(201).json(res.locals.blogID);
 })
+
+
 
 export default router;
