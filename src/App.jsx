@@ -1,4 +1,3 @@
-import Counter from './components/Counter';
 import CreatePost from './containers/CreatePost';
 import Feed from './containers/Feed';
 import MyFeed from './containers/MyFeed';

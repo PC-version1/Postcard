@@ -29,7 +29,7 @@ const CreatePost = () => {
       tags
   }
     dispatch(addNewPost(newBlogPost))
-    console.log('New Blog Post:', newBlogPost);
+    // console.log('New Blog Post:', newBlogPost);
 
     // Reset the input fields
     setTitle('');
@@ -74,12 +74,7 @@ const CreatePost = () => {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 mx-1 rounded hover:bg-blue-600 focus:outline-none"
-        >
-          Create Post
-        </button>
+        
         <div className="mt-4">
         <input
           type="text"
@@ -88,6 +83,16 @@ const CreatePost = () => {
           onChange={handleTagInputChange}
           className="border border-gray-300 rounded p-2 w-full"
         />
+          <div className="flex mt-4">
+        <h3 className="text-lg font-semibold mb-2">Tags:</h3>
+        <ul className='flex space-x-10 mx-5'>
+          {tags.map((tag, index) => (
+            <li key={index} className="mb-2">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
           <button
           onClick={handleAddTag}
           className="mt-2 mx-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
@@ -100,17 +105,14 @@ const CreatePost = () => {
         >
           Clear Tags
         </button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 mx-1 rounded hover:bg-blue-600 focus:outline-none float-right"
+        >
+          Create Post
+        </button>
       </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold mb-2">Tags:</h3>
-        <ul>
-          {tags.map((tag, index) => (
-            <li key={index} className="mb-2">
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </div>
+     
       </form>
     </div>
   );
