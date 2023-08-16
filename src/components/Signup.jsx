@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { onLogin } from '../reducers/userReducer';
+import { Link } from 'react-router-dom';
 
-const Login = ( {signup} ) => {
+const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.userReducer.isAuthenticated);
 
-  const handleLogin = () => {
+  const handleSignup = () => {
     // Dispatch the login action
-    dispatch(onLogin({ username, password }));
+    // dispatch(onLogin({ username, password }));
   };
 
   return (
@@ -27,7 +27,7 @@ const Login = ( {signup} ) => {
 
       <div className='flex justify-center items-center h-screen'>
         <div className='w-1/4 h-1/2 p-8 bg-slate-100 rounded-lg shadow-md'>
-          <h2 className='text-2xl font-semibold mb-4'>Login</h2>
+          <h2 className='text-2xl font-semibold mb-4'>Sign Up</h2>
           <input
             type='text'
             placeholder='Username'
@@ -43,23 +43,18 @@ const Login = ( {signup} ) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            onClick={handleLogin}
+            onClick={handleSignup}
             className='w-full bg-blue-500 text-white p-2 my-3 rounded hover:bg-blue-800'
-          >
-            LOGIN
-          </button>
-          
-          <Link to='/signup'><button className='w-full bg-cyan-500 text-white p-2 rounded hover:bg-blue-600'>SIGN UP</button></ Link >
-          {loginStatus === 'failed' && (
-            <p className='text-red-500 mt-2'>Incorrect username or password</p>
-          )}
+          >SIGN UP
+          </button>       
+          <Link to='/login'><button className='w-full bg-cyan-500 text-white p-2 rounded hover:bg-blue-600'>BACK TO LOGIN</button></ Link >   
         </div>
       </div>
     </>
   );
 };
 
-export default Login;
+export default Signup;
 
 
 

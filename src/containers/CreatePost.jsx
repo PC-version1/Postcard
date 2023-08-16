@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewPost } from '../../reducers/postsSlice';
+// import { addNewPost } from '../reducers';
+import Navbar from '../components/Navbar';
 
 
 const CreatePost = () => {
@@ -23,15 +24,24 @@ const CreatePost = () => {
     event.preventDefault();
 
     // Create a new blog post using the input values
-    const newBlogPost = {
+    const blogPost = {
       title,
       content,
       tags
   }
-    dispatch(addNewPost(newBlogPost))
-    // console.log('New Blog Post:', newBlogPost);
+  const addData = async (blogPost) => {
+    try{
+      const response = await axios.post(`${POSTS_URL}/posts`, blogPost);
+      console.log(blogPost);
+      console.log(response)
+      return response.data;
+    } catch (err) {
+      return err.message;
+    }
+  }
+  //i dont think we'll need to dispatch an action because there is no need to rerender after posting
+    // dispatch(addNewPost(blogPost))
 
-    // Reset the input fields
     setTitle('');
     setContent('');
   };
@@ -52,7 +62,9 @@ const CreatePost = () => {
   }
 
   return (
-    <div className="bg-slate-300 shadow-lg rounded-lg p-6 max-w-4xl mx-auto m-10">
+    <>
+    <Navbar />
+    <div className="bg-slate-100 shadow-lg rounded-lg p-6 max-w-4xl mx-auto m-10">
       <h2 className="text-xl font-semibold mb-2">Create a New Blog Post</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -95,19 +107,19 @@ const CreatePost = () => {
       </div>
           <button
           onClick={handleAddTag}
-          className="mt-2 mx-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="mt-2 mx-1 bg-cyan-700 hover:bg-sky-600 text-white px-4 py-2 rounded  focus:outline-none"
         >
           Add Tag
         </button>
         <button
           onClick={handleClearTag}
-          className="mt-2 mx-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="mt-2 mx-1 bg-cyan-700 hover:bg-sky-600 text-white px-4 py-2 rounded  focus:outline-none"
         >
           Clear Tags
         </button>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 mx-1 rounded hover:bg-blue-600 focus:outline-none float-right"
+          className="bg-cyan-700 hover:bg-sky-600 text-white px-4 py-2 mx-1 rounded  focus:outline-none float-right"
         >
           Create Post
         </button>
@@ -115,6 +127,7 @@ const CreatePost = () => {
      
       </form>
     </div>
+    </>
   );
 };
 
