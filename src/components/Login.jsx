@@ -2,25 +2,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { onLogin } from '../../reducers/authslice.js';
 import React, { useState } from 'react';
 import axios from 'axios'; //import axios library
-// import '../input.css';
 
 const Login = () => {
-  //add un/pw states
+  //add state
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   //add handle login
+
   //simulate successful login by creating user obj and dispatching on login action with user data
   //trying to mimic redux toolkit here.
   const handleLogin = async () => {
-    // submit the username and password upon button click
-    // fetch promise chain
-    // check if that response is ok -- status 200
-    // if (response.ok) {
-    // call dispatch to authslice Reducer and change the
+    const dispatch = useDispatch();
     try {
       //send post req with un/pw
       //if login is successfull parse data from response (pc)
-      //dispatch an action to updat auth prop in authSlice
+      //dispatch an action to update auth prop in authSlice
       //else
       //login failed
       //display error message to user invalid credentials

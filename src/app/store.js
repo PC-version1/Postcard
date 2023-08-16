@@ -1,9 +1,9 @@
-//dummy store just to demonstrate redux toolkit
-
+//import dependencies
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+//confused on import ??
+import authReducer from '../../reducers/authSlice';
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    auth: authReducer, //add authSlice reducer to store
   },
 });

@@ -6,6 +6,7 @@ import MyPosts from './components/MyPosts.jsx';
 import Navbar from './components/Navbar.jsx';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Login from './components/Login.jsx';
+import SignUpPage from './components/SignUpPage.jsx';
 function App() {
   return (
     <>
@@ -16,7 +17,8 @@ function App() {
           <Route path='/myFeed' Component={MyFeed} />
           <Route path='/myPosts' Component={MyPosts} />
           <Route path='/createPost' Component={CreatePost} /> */}
-          <Route path='/login' Component={Login} />
+          {/* <Route path='/login' Component={Login} /> */}
+          <Route path='/signup' Component={SignUpPage} />
         </Routes>
       </BrowserRouter>
     </>
