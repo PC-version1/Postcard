@@ -1,21 +1,36 @@
-import Counter from './components/Counter';
-import CreatePost from './components/CreatePost';
-import Feed from './components/Feed';
-import MyFeed from './components/MyFeed';
-import MyPosts from './components/MyPosts';
-import Navbar from './components/Navbar';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import CreatePost from './containers/CreatePost';
+import Feed from './containers/Feed';
+import MyFeed from './containers/MyFeed';
+import MyPosts from './containers/MyPosts';
+import Login from './components/Login';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Signup from './components/Signup';
 
 function App() {
+  const user = useSelector(state => state.userReducer.user);
+
+  const PrivateRoute = ({ Component}) => {
+    if (user) {
+      return Component;
+    } else {
+      return <Navigate to='/login' />
+    }
+  }
+
+  const handleSignup = () => {
+    return <Navigate to='/signup' />
+  }
   return (
     <>
       <BrowserRouter>
-        <Navbar />
         <Routes>
-          <Route path='/' Component={Feed} />
-          <Route path='/myFeed' Component={MyFeed} />
-          <Route path='/myPosts' Component={MyPosts} />
-          <Route path='/createPost' Component={CreatePost} />
+          <Route path='/login' element={<Login signup={handleSignup}/>} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/' element={<PrivateRoute element={<Feed />} />} />
+          <Route path='/myFeed' element={<PrivateRoute element={<MyFeed />} />} />
+          <Route path='/myPosts' element={<PrivateRoute element={<MyPosts />} />} />
+          <Route path='/createPost' element={<PrivateRoute element={<CreatePost />} />} />
         </Routes>
       </BrowserRouter>
     </>
