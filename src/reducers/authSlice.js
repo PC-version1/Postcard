@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -12,15 +12,15 @@ const authSlice = createSlice({
   name: 'auth', //
   initialState,
   reducers: {
-    onLogin:(state,action) => {
-      state.isAuthenticated = true,
-      state.user = action.payload
+    onLogin: (state, action) => {
+      state.isAuthenticated = true;
+      state.user = action.payload;
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-    }
-  }
-})
-export const {onLogin, logout} = authSlice.actions;
+    },
+  },
+});
+export const { onLogin, logout } = authSlice.actions;
 export default authSlice.reducer;

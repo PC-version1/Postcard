@@ -19,7 +19,6 @@ const MyFeed = () => {
         console.log(err);
       }
     };
-
     fetchData();  // Immediately invoke the function to fetch data
   }, []);  // Empty dependency array to run the effect only once
 
@@ -40,6 +39,7 @@ const MyFeed = () => {
             onClick={() => handlePostClick(post)}
           >
             <h3 className="text-lg font-semibold">{post.title}</h3>
+            <p className="text-gray-600 truncate">-{post.author}</p>
             <p className="text-gray-600 truncate">{post.body}</p>
           </div>
         ))}
@@ -51,6 +51,7 @@ const MyFeed = () => {
             author="Author Name"
             date="July 15, 2023"
             content={selectedPost.body}
+            tags={selectedPost.tags}
           />
         )}
       </div>
